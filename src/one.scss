@@ -1,0 +1,70 @@
+@font-face {
+    font-family: 'iconfont';
+    src: url('../assets/fonts/iconfont.eot');
+    src: url('../assets/fonts/iconfont.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/iconfont.woff2') format('woff2'),
+        url('../assets/fonts/iconfont.woff') format('woff'),
+        url('../assets/fonts/iconfont.ttf') format('truetype'),
+        url('../assets/fonts/iconfont.svg#iconfont') format('svg');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.div0 {
+    width: 200px;
+    height: 150px;
+    display: inline-block;
+    background: url('../assets/images/1.bmp') 0% 0% / 100% 100% no-repeat;
+}
+
+.div1 {
+    width: 200px;
+    height: 150px;
+    display: inline-block;
+    background: url('../assets/images/1.jpeg') 0% 0% / 100% 100% no-repeat;
+}
+
+.div2 {
+    width: 200px;
+    height: 150px;
+    display: inline-block;
+    background: url('../assets/images/1.jpg') 0% 0% / 100% 100% no-repeat;
+}
+
+.div3 {
+    width: 200px;
+    height: 150px;
+    display: inline-block;
+    background: url('../assets/images/2.jpg') 0% 0% / 100% 100% no-repeat;
+}
+
+.div4 {
+    width: 200px;
+    height: 150px;
+    display: inline-block;
+    background: url('../assets/images/3.jpg') 0% 0% / 100% 100% no-repeat;
+}
+
+p {
+    position: relative;
+}
+
+p span {
+    position: absolute;
+    display: inline-block;
+    background: red;
+    width: 50px;
+    height: 50px;
+    transform: translate(100px, 80px) rotate(60deg);
+}
+
+.isH2 {
+    color: rgb(55, 0, 255);
+}
