@@ -1,15 +1,21 @@
 import twoCss from './two.scss';
 
-export default function () {
-    let h2 = document.createElement('h2');
-    h2.className = twoCss['isH2']
-    h2.innerHTML = 'two h2'
-    document.body.appendChild(h2)
-}
 
-// https://github.com/TheLarkInn/angular2-template-loader
-// https://webpack.js.org/loaders/html-loader/
-// https://github.com/TypeStrong/ts-loader
-// https://github.com/jupl/traceur-loader
-// https://github.com/webpack-contrib/eslint-loader
-// https://github.com/sairion/buble-loader
+const two = {
+    fn1: () => {
+        let h2 = document.createElement('h2');
+        h2.className = twoCss['isH2']
+        h2.innerHTML = 'two h 3'
+        document.body.appendChild(h2)
+    },
+    fn2: () => {
+        let h2 = document.createElement('button');
+        h2.innerHTML = '按钮';
+        h2.onclick = () => {
+            two.fn1()
+        }
+        document.body.appendChild(h2)
+    }
+
+}
+export default two

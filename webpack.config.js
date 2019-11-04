@@ -3,19 +3,28 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
+const webpack = require('webpack');
+
+console.log(path.resolve(__dirname))
+console.log(path.join(__dirname))
 
 module.exports = {
-    // mode: 'development',
-    mode: 'production',
+    mode: 'development',
+    // mode: 'production',
     entry: './index.js',
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist')
     },
     devServer: {
-        contentBase: './dist',
+        contentBase: path.resolve(__dirname, 'dist'),
+        publicPath: "/",
         open: true,
-        port: 6541
+        port: 6541,
+        hot: true,
+        noInfo: true,
+        // hotOnly:true,
+        inline: true // “inline”选项会为入口页面添加“热加载”功能
     },
     devtool: 'source-map', // 生产环境最好不用
     plugins: [
@@ -23,6 +32,8 @@ module.exports = {
             title: 'Webpack Learn',
         }),
         new CleanWebpackPlugin(),
+        // 如果通过启用了“ 热模块更换 ” HotModuleReplacementPlugin，则其接口将在module.hot属性下公开
+        new webpack.HotModuleReplacementPlugin()
     ],
     module: {
         rules: [{
@@ -31,7 +42,7 @@ module.exports = {
                     loader: 'url-loader',
                     options: {
                         // 设置图片打包阀值，如果超过阀值才会单独打包，否则直接以base64形式写到代码里
-                        limit: 1024 * 500, // 500 kb
+                        limit: 1024 * 15, // 30kb
                         name() {
                             if (process.env.NODE_ENV === 'production') {
                                 return '[name].[ext]';
@@ -85,12 +96,12 @@ module.exports = {
                     },
                     'sass-loader',
                 ],
-                exclude: [path.resolve(__dirname, '..', 'node_modules')]
+                exclude: [path.resolve(__dirname, 'node_modules')]
             },
             {
                 // npm install -D babel-loader @babel/core @babel/preset-env
                 test: /\.m?js$/i,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                     options: {

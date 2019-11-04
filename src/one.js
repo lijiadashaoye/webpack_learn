@@ -13,7 +13,7 @@ const one = {
         }
 
         let span = document.createElement('span');
-        span.style.fontSize = "30px";
+        span.style.fontSize = "50px";
         span.className = oneCss['iconfont'];
         span.innerHTML = '&#xe635;';
 
