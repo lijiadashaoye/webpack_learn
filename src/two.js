@@ -8,8 +8,6 @@ export default function () {
 }
 
 // https://github.com/TheLarkInn/angular2-template-loader
-// https://webpack.js.org/loaders/css-loader/
-// https://webpack.js.org/loaders/style-loader/
 // https://webpack.js.org/loaders/html-loader/
 // https://github.com/TypeStrong/ts-loader
 // https://github.com/jupl/traceur-loader

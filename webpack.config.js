@@ -17,9 +17,10 @@ module.exports = {
         open: true,
         port: 6541
     },
+    devtool: 'source-map', // 生产环境最好不用
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'learn',
+            title: 'Webpack Learn',
         }),
         new CleanWebpackPlugin(),
     ],
@@ -29,7 +30,6 @@ module.exports = {
                 use: [{
                     loader: 'url-loader',
                     options: {
-
                         // 设置图片打包阀值，如果超过阀值才会单独打包，否则直接以base64形式写到代码里
                         limit: 1024 * 500, // 500 kb
                         name() {
@@ -40,7 +40,6 @@ module.exports = {
                         },
                         outputPath: 'images',
                     },
-
                 }, ],
             },
             {
@@ -57,14 +56,18 @@ module.exports = {
                 }
             },
             {
-                test: /\.scss$/i,
+                test: /\.(scss|sass)$/i,
                 use: ['style-loader',
                     {
                         loader: 'css-loader',
                         options: {
-                            // 使用modules时，每一个css文件是一个对象，在赋值样式时，class名为此对象的属性值
-                            modules: true,
                             importLoaders: 2,
+                            // 使用modules时，每一个css文件是一个对象，在js中引用赋值样式时，class名为此对象的属性值
+                            modules: {
+                                //  使用`local`值与使用`modules：true`具有相同的效果
+                                mode: 'local',
+                                localIdentName: '[hash:base64]', // 为了生成类名不是纯随机
+                            },
                         }
                     },
                     { // npm i -D postcss-loader cssnano autoprefixer
@@ -80,15 +83,12 @@ module.exports = {
                             ],
                         }
                     },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            implementation: require('sass'),
-                        },
-                    },
-                ]
+                    'sass-loader',
+                ],
+                exclude: [path.resolve(__dirname, '..', 'node_modules')]
             },
             {
+                // npm install -D babel-loader @babel/core @babel/preset-env
                 test: /\.m?js$/i,
                 exclude: /(node_modules|bower_components)/,
                 use: {
