@@ -111,6 +111,7 @@ module.exports = {
                         "presets": [
                             ['@babel/preset-env']
                         ],
+                        plugins: ['@babel/plugin-transform-runtime'],
                         cacheDirectory: true // 用于缓存加载程序的结果
                     }
                 },
