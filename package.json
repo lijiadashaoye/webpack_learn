@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "sideEffects": false,
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack"
+    "start": "webpack-dev-server --config app_set/webpack.config.js",
+    "build": "webpack --config app_set/webpack.config.js"
   },
   "keywords": [],
   "author": "",

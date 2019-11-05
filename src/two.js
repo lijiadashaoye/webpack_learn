@@ -1,6 +1,5 @@
 import twoCss from './two.scss';
 
-
 const two = {
     fn1: () => {
         let h2 = document.createElement('h2');
@@ -16,6 +15,5 @@ const two = {
         }
         document.body.appendChild(h2)
     }
-
 }
 export default two

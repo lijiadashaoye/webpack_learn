@@ -5,19 +5,18 @@ const {
 } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
-console.log(path.resolve(__dirname))
-console.log(path.join(__dirname))
-
 module.exports = {
     mode: 'development',
     // mode: 'production',
-    entry: './index.js',
+    entry: { //入口
+        main: path.resolve(__dirname, "./index.js")
+    },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, './../dist')
     },
     devServer: {
-        contentBase: path.resolve(__dirname, 'dist'),
+        contentBase: path.resolve(__dirname, './../dist'),
         publicPath: "/",
         open: true,
         port: 6541,
@@ -25,6 +24,13 @@ module.exports = {
         inline: true // “inline”选项会为入口页面添加“热加载”功能
     },
     devtool: 'source-map', // 生产环境最好不用
+    optimization: { // 生产环境自动使用，开发环境加了也不会删除代码，只是标记一下引入并未使用
+        usedExports: true,
+    },
+    // "sideEffects": [  // 在package.json 添加，以表示不要被摇树化的文件类型
+    //   "*.css",
+    //   "*.scss"
+    // ],
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Webpack Learn',
@@ -95,7 +101,7 @@ module.exports = {
                     },
                     'sass-loader',
                 ],
-                exclude: [path.resolve(__dirname, 'node_modules')]
+                exclude: [path.resolve(__dirname, './../node_modules')]
             },
             {
                 // npm install -D babel-loader @babel/core @babel/preset-env
@@ -111,11 +117,11 @@ module.exports = {
                         "presets": [
                             ['@babel/preset-env']
                         ],
-                        plugins: ['@babel/plugin-transform-runtime'],
+                        plugins: ['@babel/plugin-transform-runtime'], // 使Babel运行时作为单独的模块，以避免重复。
                         cacheDirectory: true // 用于缓存加载程序的结果
                     }
                 },
-                exclude: [path.resolve(__dirname, 'node_modules')]
+                exclude: [path.resolve(__dirname, './../node_modules')]
             }
         ]
     }
