@@ -31,6 +31,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         // 如果通过启用了“ 热模块更换 ” HotModuleReplacementPlugin，则其接口将在module.hot属性下公开
+        // 不能在使用HotModuleReplacementPlugin插件的同时开启hotOnly；
         new webpack.HotModuleReplacementPlugin()
     ],
     module: {
@@ -98,12 +99,18 @@ module.exports = {
             },
             {
                 // npm install -D babel-loader @babel/core @babel/preset-env
+                // babel/plugin-transform-runtime 和 babel/preset-env 是babel-loader将ES6语法
+                // 转译成ES5语法使用的两个插件，两个只需要使用一个就行，
+                // 只不过， babel/plugin-transform-runtime 适用于开发组件或者库的时候使用，防止全局污染，
+                // babel/preset-env 是我们在开发一般项目时使用的；
                 test: /\.m?js$/i,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env'],
+                        "presets": [
+                            ['@babel/preset-env']
+                        ],
                         cacheDirectory: true // 用于缓存加载程序的结果
                     }
                 },

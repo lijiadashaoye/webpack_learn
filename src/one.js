@@ -1,7 +1,6 @@
 import tupian from '../assets/images/5.jpg';
 import oneCss from './one.scss';
 
-
 const one = {
     fn1: () => {
         let num = 4,
