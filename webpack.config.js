@@ -22,8 +22,6 @@ module.exports = {
         open: true,
         port: 6541,
         hot: true,
-        noInfo: true,
-        // hotOnly:true,
         inline: true // “inline”选项会为入口页面添加“热加载”功能
     },
     devtool: 'source-map', // 生产环境最好不用
@@ -106,9 +104,10 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         presets: ['@babel/preset-env'],
-                        cacheDirectory: true
+                        cacheDirectory: true // 用于缓存加载程序的结果
                     }
-                }
+                },
+                exclude: [path.resolve(__dirname, 'node_modules')]
             }
         ]
     }
