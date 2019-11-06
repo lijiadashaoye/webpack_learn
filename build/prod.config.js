@@ -83,7 +83,7 @@ const prod = {
                 exclude: [path.resolve(__dirname, './../node_modules')]
             }
         ]
-    }
+    },
 }
 
 module.exports = merge(comm, prod)

@@ -14,5 +14,10 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
     ],
-
+    resolve: {
+        alias: { // 定义文件读取路径快捷名称
+            assets: path.resolve(__dirname, './../assets/'),
+            src: path.resolve(__dirname, './../src/'),
+        }
+    }
 }
