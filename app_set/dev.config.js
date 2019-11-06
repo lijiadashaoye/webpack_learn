@@ -1,8 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const comm = require('./comm.config')
+const comm = require('./comm.config');
 
+// 开发模式
 const env = {
     mode: 'development',
     output: {
@@ -97,5 +98,5 @@ const env = {
         ]
     }
 }
-console.log(merge(comm, env))
+
 module.exports = merge(comm, env)

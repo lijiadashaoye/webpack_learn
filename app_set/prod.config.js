@@ -2,6 +2,7 @@ const path = require('path');
 const merge = require('webpack-merge');
 const comm = require('./comm.config');
 
+// 生产环境打包
 const prod = {
     mode: 'production',
     output: {
@@ -84,5 +85,5 @@ const prod = {
         ]
     }
 }
-console.log(merge(comm, prod))
+
 module.exports = merge(comm, prod)
