@@ -6,7 +6,10 @@
   "sideEffects": false,
   "scripts": {
     "start": "webpack-dev-server --config app_set/webpack.config.js",
-    "build": "webpack --config app_set/webpack.config.js"
+    "build": "webpack --config app_set/webpack.config.js",
+    "dev": "webpack-dev-server --config app_set/dev.config.js",
+    "devd": "webpack --config app_set/dev.config.js",
+    "prod": "webpack --config app_set/prod.config.js"
   },
   "keywords": [],
   "author": "",
@@ -32,7 +35,8 @@
     "url-loader": "^2.2.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "core-js": "^3.3.6",
