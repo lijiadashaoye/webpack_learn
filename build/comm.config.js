@@ -20,5 +20,10 @@ module.exports = {
             assets: path.resolve(process.cwd(), 'assets'),
             src: './../src',
         }
-    }
+    },
+    optimization: {
+        splitChunks: { // 代码分割
+            chunks: 'all',
+        }
+    },
 }

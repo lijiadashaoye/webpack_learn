@@ -24,8 +24,11 @@ module.exports = {
         inline: true // “inline”选项会为入口页面添加“热加载”功能
     },
     devtool: 'source-map', // 生产环境最好不用
-    optimization: { // 生产环境自动使用，开发环境加了也不会删除代码，只是标记一下引入并未使用
-        usedExports: true,
+    optimization: {
+        usedExports: true, // 摇树化，生产环境自动使用，开发环境加了也不会删除代码，只是标记一下引入并未使用
+        splitChunks: { // 代码分割
+            chunks: 'all',
+        }
     },
     // "sideEffects": [  // 在package.json 添加，以表示不要被摇树化的文件类型
     //   "*.css",
