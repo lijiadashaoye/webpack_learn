@@ -5,11 +5,11 @@
   "main": "index.js",
   "sideEffects": false,
   "scripts": {
-    "start": "webpack-dev-server --config app_set/webpack.config.js",
-    "build": "webpack --config app_set/webpack.config.js",
-    "dev": "webpack-dev-server --config app_set/dev.config.js",
-    "devd": "webpack --config app_set/dev.config.js",
-    "prod": "webpack --config app_set/prod.config.js"
+    "start": "webpack-dev-server --config build/webpack.config.js",
+    "build": "webpack --config build/webpack.config.js",
+    "dev": "webpack-dev-server --config build/dev.config.js",
+    "devd": "webpack --config build/dev.config.js",
+    "prod": "webpack --config build/prod.config.js"
   },
   "keywords": [],
   "author": "",
