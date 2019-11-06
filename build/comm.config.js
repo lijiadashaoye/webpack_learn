@@ -6,7 +6,7 @@ const {
 
 module.exports = {
     entry: { //入口
-        main: path.resolve(__dirname, "./index.js")
+        main: "./build/index.js"
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -16,8 +16,8 @@ module.exports = {
     ],
     resolve: {
         alias: { // 定义文件读取路径快捷名称
-            assets: path.resolve(__dirname, './../assets/'),
-            src: path.resolve(__dirname, './../src/'),
+            assets: './../assets',
+            src: './../src',
         }
     }
 }

@@ -8,11 +8,10 @@ const env = {
     mode: 'development',
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, './../dist')
+        path: path.resolve(__dirname, '../dist')
     },
     devServer: {
-        contentBase: path.resolve(__dirname, './../dist'),
-        publicPath: "/",
+        contentBase: path.resolve(__dirname, '../dist'),
         open: true,
         port: 6541,
         hot: true,
@@ -33,7 +32,8 @@ const env = {
                         name: '[name].[ext]',
                         outputPath: 'images',
                     },
-                }, ],
+                }],
+                exclude: /node_modules/,
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf|svg)$/i,
@@ -41,7 +41,8 @@ const env = {
                 options: {
                     name: '[name].[ext]',
                     outputPath: 'fonts',
-                }
+                },
+                exclude: /node_modules/,
             },
             {
                 test: /\.css$/i,
@@ -73,7 +74,7 @@ const env = {
                     },
 
                 ],
-                exclude: [path.resolve(__dirname, './../node_modules')]
+                exclude: /node_modules/,
             },
             {
                 test: /\.(scss|sass)$/i,
@@ -105,7 +106,7 @@ const env = {
                     },
                     'sass-loader',
                 ],
-                exclude: [path.resolve(__dirname, './../node_modules')]
+                exclude: /node_modules/,
             },
             {
                 // npm install -D babel-loader @babel/core @babel/preset-env
@@ -114,7 +115,7 @@ const env = {
                 // 只不过， babel/plugin-transform-runtime 适用于开发组件或者库的时候使用，防止全局污染，
                 // babel/preset-env 是我们在开发一般项目时使用的；
                 test: /\.m?js$/i,
-                exclude: /node_modules/,
+
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -125,7 +126,7 @@ const env = {
                         cacheDirectory: true // 用于缓存加载程序的结果
                     }
                 },
-                exclude: [path.resolve(__dirname, './../node_modules')]
+                exclude: /node_modules/,
             }
         ]
     }

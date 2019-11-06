@@ -7,7 +7,7 @@ const prod = {
     mode: 'production',
     output: {
         filename: '[contenthash].js',
-        path: path.resolve(__dirname, './../dist')
+        path: path.resolve(__dirname, '../dist')
     },
     module: {
         rules: [{
