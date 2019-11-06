@@ -4,6 +4,7 @@ const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
 
+
 module.exports = {
     entry: { //入口
         main: "./build/index.js"
@@ -15,8 +16,8 @@ module.exports = {
         new CleanWebpackPlugin(),
     ],
     resolve: {
-        alias: { // 定义文件读取路径快捷名称
-            assets: './../assets',
+        alias: { // 定义文件读取路径快捷名称，两种写法都可以
+            assets: path.resolve(process.cwd(), 'assets'),
             src: './../src',
         }
     }
