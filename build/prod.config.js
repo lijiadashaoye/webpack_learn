@@ -31,6 +31,38 @@ const prod = {
                 }
             },
             {
+                test: /\.css$/i,
+                use: ['style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            // 使用modules时，每一个css文件是一个对象，在js中引用赋值样式时，class名为此对象的属性值
+                            modules: {
+                                //  使用`local`值与使用`modules：true`具有相同的效果
+                                mode: 'local',
+                                localIdentName: '[hash:base64]', // 为了生成类名不是纯随机
+                            },
+                        }
+                    },
+                    { // npm i -D postcss-loader cssnano autoprefixer
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [
+                                // 使用postcss-import插件，遵循@import规则，
+                                // 你可以将reset.css样式合并到你的主样式表中，减少http请求。
+                                require('postcss-import')(),
+                                // css浏览器兼容，postcss-cssnext已经内置了autoprefixer。
+                                require('postcss-cssnext')(),
+                                require('cssnano')() // 压缩css
+                            ],
+                        }
+                    },
+
+                ],
+                exclude: [path.resolve(__dirname, './../node_modules')]
+            },
+            {
                 test: /\.(scss|sass)$/i,
                 use: ['style-loader',
                     {
