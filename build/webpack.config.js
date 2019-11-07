@@ -27,7 +27,28 @@ module.exports = {
     optimization: {
         usedExports: true, // 摇树化，生产环境自动使用，开发环境加了也不会删除代码，只是标记一下引入并未使用
         splitChunks: { // 代码分割
-            chunks: 'all',
+            splitChunks: {
+                chunks: 'all', // 规定引入（import）文件的方式（同步、异步）
+                minSize: 30000, // 30kb,设置最低文件大小阀值，超过这个阀值才会对其进行拆分
+                maxSize: 0,
+                minChunks: 1,
+                maxAsyncRequests: 5,
+                maxInitialRequests: 3,
+                automaticNameDelimiter: '~',
+                automaticNameMaxLength: 30,
+                name: true,
+                cacheGroups: {
+                    vendors: {
+                        test: /[\\/]node_modules[\\/]/,
+                        priority: -10
+                    },
+                    default: {
+                        minChunks: 2,
+                        priority: -20,
+                        reuseExistingChunk: true
+                    }
+                }
+            }
         }
     },
     // "sideEffects": [  // 在package.json 添加，以表示不要被摇树化的文件类型
