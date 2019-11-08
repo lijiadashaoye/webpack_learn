@@ -22,7 +22,14 @@ const two = {
         document.body.appendChild(h2)
     },
     fn1: () => {
-
+        console.log(1);
+        new Promise(res => {
+            console.log(4);
+            res()
+        }).then(() => {
+            console.log(2);
+        });
+        console.log(3);
     },
     fn2: () => {
 
