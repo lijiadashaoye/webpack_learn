@@ -1,7 +1,6 @@
 import twoCss from './two.scss';
 import _ from 'lodash';
 
-
 const two = {
     fn: () => {
         let num = 3;
@@ -21,7 +20,7 @@ const two = {
         h2.innerHTML = 'two h 3'
         document.body.appendChild(h2)
     },
-    fn1: () => { // 实现预加载
+    fn1: () => { // 实现预加载,指示浏览器在空闲时间预取three.js文件。
         import( /* webpackPrefetch: true */ './three').then(({
             default: res
         }) => {

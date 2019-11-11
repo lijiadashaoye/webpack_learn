@@ -1,6 +1,10 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const comm = require('./comm.config');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
 
 // 生产环境打包
 const prod = {
@@ -32,7 +36,8 @@ const prod = {
             },
             {
                 test: /\.css$/i,
-                use: ['style-loader',
+                use: [
+                    MiniCssExtractPlugin.loader, // 将css提取出来
                     {
                         loader: 'css-loader',
                         options: {
@@ -45,16 +50,19 @@ const prod = {
                             },
                         }
                     },
-                    { // npm i -D postcss-loader cssnano autoprefixer
+                    { // npm i -D postcss-loader autoprefixer
                         loader: 'postcss-loader',
                         options: {
                             plugins: [
-                                // 使用postcss-import插件，遵循@import规则，
-                                // 你可以将reset.css样式合并到你的主样式表中，减少http请求。
-                                require('postcss-import')(),
                                 // css浏览器兼容，postcss-cssnext已经内置了autoprefixer。
                                 require('postcss-cssnext')(),
-                                require('cssnano')() // 压缩css
+
+                                // 配制了 optimize-css-assets-webpack-plugin 后这俩可以不写
+
+                                // require('cssnano')() // 压缩css
+                                // 使用postcss-import插件，遵循@import规则，
+                                // 你可以将reset.css样式合并到你的主样式表中，减少http请求。
+                                // require('postcss-import')(),
                             ],
                         }
                     },
@@ -64,7 +72,8 @@ const prod = {
             },
             {
                 test: /\.(scss|sass)$/i,
-                use: ['style-loader',
+                use: [
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
@@ -83,10 +92,11 @@ const prod = {
                             plugins: [
                                 // 使用postcss-import插件，遵循@import规则，
                                 // 你可以将reset.css样式合并到你的主样式表中，减少http请求。
-                                require('postcss-import')(),
+                                // require('postcss-import')(),
                                 // css浏览器兼容，postcss-cssnext已经内置了autoprefixer。
                                 require('postcss-cssnext')(),
-                                require('cssnano')() // 压缩css
+                                // 使用 OptimizeCSSAssetsPlugin 后就不需要配制了
+                                // require('cssnano')() // 压缩css 
                             ],
                         }
                     },
@@ -102,21 +112,54 @@ const prod = {
                 // babel/preset-env 是我们在开发一般项目时使用的；
                 test: /\.m?js$/i,
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        "presets": [
-                            ['@babel/preset-env']
-                        ],
-                        plugins: [
-                            '@babel/plugin-transform-runtime', // 使Babel运行时作为单独的模块，以避免重复。
-                        ],
-                        cacheDirectory: true // 用于缓存加载程序的结果
-                    }
-                },
+                use: [
+                    "thread-loader", // 开启一个webworker进行代码转义
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            "presets": [
+                                ['@babel/preset-env']
+                            ],
+                            plugins: [
+                                '@babel/plugin-transform-runtime', // 使Babel运行时作为单独的模块，以避免重复。
+                            ],
+                            cacheDirectory: true // 用于缓存加载程序的结果
+                        }
+                    },
+                ]
 
             }
         ]
+    },
+    plugins: [
+        new MiniCssExtractPlugin({ // 将css提取出来
+            filename: '[contenthash].css',
+            chunkFilename: '[id].css',
+        }),
+
+    ],
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({ // 最小化js代码插件
+                exclude: /\/excludes/,
+                terserOptions: {  // 执行删除代码里的所有注释
+                    output: {
+                        comments: false,
+                    },
+                },
+                extractComments: false, // 是否将注释提取到单独的文件中，为ture会单独生成注释文件
+            }),
+            new OptimizeCSSAssetsPlugin({ // 最小化输出css文件插件 内置 cssnano
+                cssProcessorPluginOptions: {
+                    preset: ['default', {
+                        discardComments: {
+                            removeAll: true
+                        }
+                    }],
+                },
+            })
+        ],
     },
 }
 
