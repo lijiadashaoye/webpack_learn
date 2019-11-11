@@ -60,7 +60,7 @@ const prod = {
                     },
 
                 ],
-                exclude: [path.resolve(__dirname, './../node_modules')]
+                exclude: /node_modules/,
             },
             {
                 test: /\.(scss|sass)$/i,
@@ -92,7 +92,7 @@ const prod = {
                     },
                     'sass-loader',
                 ],
-                exclude: [path.resolve(__dirname, './../node_modules')]
+                exclude: /node_modules/,
             },
             {
                 // npm install -D babel-loader @babel/core @babel/preset-env
@@ -108,11 +108,13 @@ const prod = {
                         "presets": [
                             ['@babel/preset-env']
                         ],
-                        plugins: ['@babel/plugin-transform-runtime'], // 使Babel运行时作为单独的模块，以避免重复。
+                        plugins: [
+                            '@babel/plugin-transform-runtime', // 使Babel运行时作为单独的模块，以避免重复。
+                        ],
                         cacheDirectory: true // 用于缓存加载程序的结果
                     }
                 },
-                exclude: [path.resolve(__dirname, './../node_modules')]
+
             }
         ]
     },

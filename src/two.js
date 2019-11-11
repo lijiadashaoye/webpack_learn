@@ -21,11 +21,14 @@ const two = {
         h2.innerHTML = 'two h 3'
         document.body.appendChild(h2)
     },
-    fn1: () => {
-       
+    fn1: () => { // 实现预加载
+        import( /* webpackPrefetch: true */ './three').then(({
+            default: res
+        }) => {
+            res.three()
+        })
     },
     fn2: () => {
-      
 
 
     }

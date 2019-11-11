@@ -23,7 +23,7 @@ module.exports = {
     },
     optimization: {
         splitChunks: { // 代码分割
-            chunks: 'all',
+            chunks: 'all', // 规定可以匹配的引入（import）文件的方式（同步initial、异步async）
         }
     },
 }

@@ -115,14 +115,15 @@ const env = {
                 // 只不过， babel/plugin-transform-runtime 适用于开发组件或者库的时候使用，防止全局污染，
                 // babel/preset-env 是我们在开发一般项目时使用的；
                 test: /\.m?js$/i,
-
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        "presets": [
+                        presets: [
                             ['@babel/preset-env']
                         ],
-                        plugins: ['@babel/plugin-transform-runtime'], // 使Babel运行时作为单独的模块，以避免重复。
+                        plugins: [
+                            '@babel/plugin-transform-runtime', // 使Babel运行时作为单独的模块，以避免重复。
+                        ],
                         cacheDirectory: true // 用于缓存加载程序的结果
                     }
                 },

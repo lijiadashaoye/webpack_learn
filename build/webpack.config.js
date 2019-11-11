@@ -27,28 +27,27 @@ module.exports = {
     optimization: {
         usedExports: true, // 摇树化，生产环境自动使用，开发环境加了也不会删除代码，只是标记一下引入并未使用
         splitChunks: { // 代码分割
-            splitChunks: {
-                chunks: 'all', // 规定引入（import）文件的方式（同步、异步）
-                minSize: 30000, // 30kb,设置最低文件大小阀值，超过这个阀值才会对其进行拆分
-                maxSize: 0,
-                minChunks: 1,
-                maxAsyncRequests: 5,
-                maxInitialRequests: 3,
-                automaticNameDelimiter: '~',
-                automaticNameMaxLength: 30,
-                name: true,
-                cacheGroups: {
-                    vendors: {
-                        test: /[\\/]node_modules[\\/]/,
-                        priority: -10
-                    },
-                    default: {
-                        minChunks: 2,
-                        priority: -20,
-                        reuseExistingChunk: true
-                    }
+            chunks: 'all', // 规定可以匹配的引入（import）文件的方式（同步initial、异步async）
+            minSize: 30000, // 30kb,设置文件大小阀值，超过这个阀值才会对其进行拆分
+            maxSize: 0, // 定义二次拆分的阀值，超过阀值，会进行二次拆分
+            minChunks: 1, // 拆分前被共享模块的最低引用次数。
+            maxAsyncRequests: 5, // 按需加载时最大并行请求数。
+            maxInitialRequests: 3, // 入口点（首页）的最大并行请求数。
+            automaticNameDelimiter: '~', // 指定用于生成名称的定界符
+            automaticNameMaxLength: 30, // 设置由生成的块的名称最大字符数
+            name: true, // 将基于块和缓存组密钥自动生成一个名称
+            cacheGroups: {
+                vendors: { // 定义符合规则的引入怎么拆分
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10
+                },
+                default: { // 其他情况的拆分
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true // 对已拆分的模块不再拆分
                 }
             }
+
         }
     },
     // "sideEffects": [  // 在package.json 添加，以表示不要被摇树化的文件类型
