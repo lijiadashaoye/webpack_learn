@@ -10,7 +10,8 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const prod = {
     mode: 'production',
     output: {
-        filename: '[contenthash].js',
+        filename: '[contenthash].js', // 定义从entry中使用的入口文件的名字
+        chunkFilename: '[contenthash].js', // 定义动态引入的文件的名字
         path: path.resolve(__dirname, '../dist')
     },
     module: {
@@ -132,7 +133,7 @@ const prod = {
     plugins: [
         new MiniCssExtractPlugin({ // 将css提取出来
             filename: '[contenthash].css',
-            chunkFilename: '[id].css',
+            chunkFilename: '[contenthash].css',
         }),
 
     ],
