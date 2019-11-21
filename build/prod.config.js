@@ -143,14 +143,14 @@ const prod = {
         minimizer: [
             new TerserPlugin({ // 最小化js代码插件
                 exclude: /\/excludes/,
-                terserOptions: {  // 执行删除代码里的所有注释
+                terserOptions: { // 执行删除代码里的所有注释
                     output: {
                         comments: false,
                     },
                 },
                 extractComments: false, // 是否将注释提取到单独的文件中，为ture会单独生成注释文件
             }),
-            new OptimizeCSSAssetsPlugin({ // 最小化输出css文件插件 内置 cssnano
+            new OptimizeCSSAssetsPlugin({ // 最小化输出 MiniCssExtractPlugin 提取出的css文件插件， 内置 cssnano
                 cssProcessorPluginOptions: {
                     preset: ['default', {
                         discardComments: {

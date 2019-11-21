@@ -39,10 +39,10 @@ module.exports = {
             cacheGroups: {
                 vendors: { // 定义符合规则的引入怎么拆分
                     test: /[\\/]node_modules[\\/]/,
-                    priority: -10
+                    priority: -10 // 打包优先级
                 },
                 default: { // 其他情况的拆分
-                    minChunks: 2,
+                    minChunks: 1, // 拆分前被共享模块的最低引用次数。
                     priority: -20,
                     reuseExistingChunk: true // 对已拆分的模块不再拆分
                 }
@@ -55,10 +55,10 @@ module.exports = {
     //   "*.scss"
     // ],
     plugins: [
-        new HtmlWebpackPlugin({
+        new HtmlWebpackPlugin({ // 自动生成html文件
             title: 'Webpack Learn',
         }),
-        new CleanWebpackPlugin(),
+        new CleanWebpackPlugin(),  // 清理dist文件夹
         // 如果通过启用了“ 热模块更换 ” HotModuleReplacementPlugin，则其接口将在module.hot属性下公开
         // 不能在使用HotModuleReplacementPlugin插件的同时开启hotOnly；
         new webpack.HotModuleReplacementPlugin()
