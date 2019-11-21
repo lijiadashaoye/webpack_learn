@@ -143,9 +143,9 @@ const prod = {
         minimizer: [
             new TerserPlugin({ // 最小化js代码插件
                 exclude: /\/excludes/,
-                terserOptions: { // 执行删除代码里的所有注释
+                terserOptions: {
                     output: {
-                        comments: false,
+                        comments: false, // 执行删除代码里的所有注释
                     },
                 },
                 extractComments: false, // 是否将注释提取到单独的文件中，为ture会单独生成注释文件
