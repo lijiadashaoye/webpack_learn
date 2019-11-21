@@ -24,6 +24,9 @@ module.exports = {
     optimization: {
         splitChunks: { // 代码分割
             chunks: 'all', // 规定可以匹配的引入（import）文件的方式（同步initial、异步async）
+        },
+        runtimeChunk: { // 兼容老版本webpack，使打包时contenthash起作用
+            name: 'runtime'
         }
     },
 }
