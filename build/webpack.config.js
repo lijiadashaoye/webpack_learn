@@ -15,6 +15,12 @@ module.exports = {
         filename: '[name].js',
         path: path.resolve(__dirname, './../dist')
     },
+    resolve: {
+        alias: { // 定义文件读取路径快捷名称，两种写法都可以
+            assets: path.resolve(process.cwd(), 'assets'),
+            src: './../src',
+        }
+    },
     devServer: {
         contentBase: path.resolve(__dirname, './../dist'),
         publicPath: "/",
@@ -58,7 +64,7 @@ module.exports = {
         new HtmlWebpackPlugin({ // 自动生成html文件
             title: 'Webpack Learn',
         }),
-        new CleanWebpackPlugin(),  // 清理dist文件夹
+        new CleanWebpackPlugin(), // 清理dist文件夹
         // 如果通过启用了“ 热模块更换 ” HotModuleReplacementPlugin，则其接口将在module.hot属性下公开
         // 不能在使用HotModuleReplacementPlugin插件的同时开启hotOnly；
         new webpack.HotModuleReplacementPlugin()

@@ -86,7 +86,7 @@ const prod = {
                             },
                         }
                     },
-                    { // npm i -D postcss-loader cssnano autoprefixer
+                    { // npm i -D postcss-loader
                         loader: 'postcss-loader',
                         options: {
                             plugins: [
@@ -95,8 +95,6 @@ const prod = {
                                 // require('postcss-import')(),
                                 // css浏览器兼容，postcss-cssnext已经内置了autoprefixer。
                                 require('postcss-cssnext')(),
-                                // 使用 OptimizeCSSAssetsPlugin 后就不需要配制了
-                                // require('cssnano')() // 压缩css 
                             ],
                         }
                     },
