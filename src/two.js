@@ -1,5 +1,4 @@
 import twoCss from './two.scss';
-import _ from 'lodash';
 
 const two = {
     fn: () => {
@@ -28,8 +27,8 @@ const two = {
         })
     },
     fn2: () => {
-
-
+        let kk = bb.compact([0, 1, false, 2, '', 3]);
+        console.log(kk)
     }
 }
 export default two

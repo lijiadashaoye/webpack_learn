@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 
 module.exports = {
@@ -14,6 +15,10 @@ module.exports = {
             title: process.env.NODE_ENV,
         }),
         new CleanWebpackPlugin(),
+        new webpack.ProvidePlugin({ //
+            bb: 'lodash',
+            $: 'jquery'
+        })
     ],
     resolve: {
         alias: { // 定义文件读取路径快捷名称，两种写法都可以
