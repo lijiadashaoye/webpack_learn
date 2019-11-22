@@ -15,7 +15,7 @@ module.exports = {
             title: process.env.NODE_ENV,
         }),
         new CleanWebpackPlugin(),
-        new webpack.ProvidePlugin({ //
+        new webpack.ProvidePlugin({ // 定义项目中使用的库的别名
             bb: 'lodash',
             $: 'jquery'
         })
