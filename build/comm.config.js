@@ -8,7 +8,7 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: { //入口
-        main: "./build/index.js"
+        main: "./build/index"
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -24,7 +24,9 @@ module.exports = {
         alias: { // 定义文件读取路径快捷名称，两种写法都可以
             assets: path.resolve(process.cwd(), 'assets'),
             src: './../src',
-        }
+        },
+        //文件时，不用写对应的后缀名
+        extensions: ['.js', '.ts', '.vue', '.json', '.tsx', ],
     },
     optimization: {
         splitChunks: { // 代码分割
