@@ -5,7 +5,6 @@ const {
 } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
-
 module.exports = {
     entry: { //入口
         main: "./build/index"
@@ -20,6 +19,9 @@ module.exports = {
             $: 'jquery'
         })
     ],
+    // __dirname 是被执行的js 文件的地址 ——文件所在目录
+    // process.cwd() 是当前执行node命令时候的文件夹地址 ——工作目录
+    
     resolve: {
         alias: { // 定义文件读取路径快捷名称，两种写法都可以
             assets: path.resolve(process.cwd(), 'assets'),
