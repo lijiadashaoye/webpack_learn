@@ -25,8 +25,8 @@ module.exports = {
             assets: path.resolve(process.cwd(), 'assets'),
             src: './../src',
         },
-        //文件时，不用写对应的后缀名
-        extensions: ['.js', '.ts', '.vue', '.json', '.tsx', ],
+        // 引用文件时，不用写对应的后缀名
+        extensions: ['.js', '.ts', '.vue', '.tsx', '.json'],
     },
     optimization: {
         splitChunks: { // 代码分割
