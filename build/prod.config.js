@@ -1,18 +1,34 @@
 const path = require('path');
 const merge = require('webpack-merge');
-const comm = require('./comm.config');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
+let useCnd = true, // 切换打包后库的引用方式
+    outputs = null,
+    comm = null;
+
+if (useCnd) { // 使用cnd方式加载库
+    comm = require('./cnd.comm.config');
+    outputs = {
+        filename: '[contenthash].js', // 定义从entry中使用的入口文件的名字
+        chunkFilename: '[contenthash].js', // 定义动态引入的文件的名字
+        path: path.resolve(__dirname, '../dist'),
+        publicPath: path.resolve(__dirname, '../dist/')
+    };
+} else { // 本地打包库
+    comm = require('./comm.config');
+    outputs = {
+        filename: '[contenthash].js', // 定义从entry中使用的入口文件的名字
+        chunkFilename: '[contenthash].js', // 定义动态引入的文件的名字
+        path: path.resolve(__dirname, '../dist'),
+    };
+}
+
 // 生产环境打包
 const prod = {
     mode: 'production',
-    output: {
-        filename: '[contenthash].js', // 定义从entry中使用的入口文件的名字
-        chunkFilename: '[contenthash].js', // 定义动态引入的文件的名字
-        path: path.resolve(__dirname, '../dist')
-    },
+    output: outputs,
     module: {
         rules: [{
                 test: /\.css$/i,
