@@ -9,14 +9,15 @@ const fs = require('fs');
 
 const files = fs.readdirSync(path.resolve(process.cwd(), './dll')),
     pluginsArr = [];
+
 files.forEach(file => {
-    if (/.*\.dll.js/.test(file)) {
+    if (/.*\.js$/.test(file)) {
         // AddAssetHtmlPlugin的参数可以是一个对象或者一个对象数组都可以
         pluginsArr.push(new AddAssetHtmlPlugin({
             filepath: path.resolve(process.cwd(), './dll', file)
         }))
     }
-    if (/.*\.manifest.json/.test(file)) {
+    if (/.*\.manifest.json$/.test(file)) {
         pluginsArr.push(new webpack.DllReferencePlugin({
             manifest: path.resolve(process.cwd(), './dll', file)
         }))
