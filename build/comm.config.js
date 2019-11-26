@@ -30,7 +30,8 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: process.env.NODE_ENV,
+            title: 'Webpack Learn' + process.env.NODE_ENV,
+            favicon: path.resolve(process.cwd(), 'assets/images/ico.ico')
         }),
         new CleanWebpackPlugin(),
         new webpack.ProvidePlugin({ // 定义项目中使用的库的别名
