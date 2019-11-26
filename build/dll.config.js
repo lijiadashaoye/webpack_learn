@@ -12,14 +12,14 @@ module.exports = {
         jquery: ['jquery']
     },
     output: {
-        path: path.join(__dirname, './dll'),
+        path: path.join(__dirname, '../dll'),
         filename: '[name].dll.js',
         library: '[name]',
     },
     plugins: [
         new CleanWebpackPlugin(),
         new webpack.DllPlugin({ // 打包公共文件并生成分析文件
-            path: path.join(__dirname, './dll', '[name].manifest.json'),
+            path: path.join(__dirname, '../dll', '[name].manifest.json'),
             name: '[name]',
         }),
     ],

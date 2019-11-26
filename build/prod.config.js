@@ -111,7 +111,7 @@ const prod = {
                 vendors: {
                     test: /[\\/]node_modules[\\/]/,
                     priority: -10,
-                    name: '[name]',
+                    name: '[contenthash]',
                 }
             }
         },
@@ -120,5 +120,4 @@ const prod = {
         }
     },
 }
-
 module.exports = merge(comm, prod)

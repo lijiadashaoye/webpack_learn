@@ -7,19 +7,19 @@ const webpack = require('webpack');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin'); // 用于项动态生成的html文件内插入标签
 const fs = require('fs');
 
-const files = fs.readdirSync(path.resolve(__dirname, './dll')),
+const files = fs.readdirSync(path.resolve(__dirname, '../dll')),
     pluginsArr = [];
 files.forEach(file => {
     if (/.*\.dll.js/.test(file)) {
         // 一个对象或者一个对象数组都可以
         pluginsArr.push(new AddAssetHtmlPlugin({
-            filepath: path.resolve(__dirname, './dll', file)
+            filepath: path.resolve(__dirname, '../dll', file)
         }))
     }
     if (/.*\.manifest.json/.test(file)) {
         pluginsArr.push(new webpack.DllReferencePlugin({
             context: __dirname,
-            manifest: path.resolve(__dirname, './dll', file)
+            manifest: path.resolve(__dirname, '../dll', file)
         }))
     }
 })
