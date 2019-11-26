@@ -10,7 +10,8 @@
     "dev": "webpack-dev-server --config build/dev.config.js",
     "devd": "webpack --config build/dev.config.js",
     "prod": "webpack --config build/prod.config.js",
-    "dll": "webpack --config build/dll.config.js"
+    "dll": "webpack --config build/dll.config.js",
+    "all": "npm run dll&&npm run prod"
   },
   "keywords": [],
   "author": "",
