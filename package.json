@@ -9,7 +9,8 @@
     "build": "webpack --config build/webpack.config.js",
     "dev": "webpack-dev-server --config build/dev.config.js",
     "devd": "webpack --config build/dev.config.js",
-    "prod": "webpack --config build/prod.config.js"
+    "prod": "webpack --config build/prod.config.js",
+    "dll": "webpack --config build/dll.config.js"
   },
   "keywords": [],
   "author": "",
@@ -19,8 +20,10 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.3",
+    "add-asset-html-webpack-plugin": "^3.1.3",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
+    "core-js": "^3.3.6",
     "css-loader": "^3.2.0",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
@@ -31,6 +34,7 @@
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
+    "regenerator-runtime": "^0.13.3",
     "sass": "^1.23.3",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
@@ -41,9 +45,7 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.9.0",
-    "webpack-merge": "^4.2.2",
-    "core-js": "^3.3.6",
-    "regenerator-runtime": "^0.13.3"
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {}
 }

@@ -27,8 +27,11 @@ const two = {
         })
     },
     fn2: () => {
-        let kk = bb.compact([0, 1, false, 2, '', 3]);
+        let kk = _.compact([0, 1, false, 2, '', 3]);
         console.log(kk)
+        let isp = $('#isP')[0];
+        console.log(isp)
+
     }
 }
 export default two

@@ -5,7 +5,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-
 // 生产环境打包
 const prod = {
     mode: 'production',
@@ -16,26 +15,6 @@ const prod = {
     },
     module: {
         rules: [{
-                test: /\.(png|jpe?g|gif|bmp)$/i,
-                use: [{
-                    loader: 'url-loader',
-                    options: {
-                        // 设置图片打包阀值，如果超过阀值才会单独打包，否则直接以base64形式写到代码里
-                        limit: 1024 * 20, // 30kb
-                        name: '[contenthash].[ext]',
-                        outputPath: 'images',
-                    },
-                }, ],
-            },
-            {
-                test: /\.(woff|woff2|eot|ttf|otf|svg)$/i,
-                loader: 'file-loader',
-                options: {
-                    name: '[contenthash].[ext]',
-                    outputPath: 'fonts',
-                }
-            },
-            {
                 test: /\.css$/i,
                 use: [
                     MiniCssExtractPlugin.loader, // 将css提取出来
@@ -57,7 +36,6 @@ const prod = {
                             plugins: [
                                 // css浏览器兼容，postcss-cssnext已经内置了autoprefixer。
                                 require('postcss-cssnext')(),
-
                                 // 配制了 optimize-css-assets-webpack-plugin 后这俩可以不写
 
                                 // require('cssnano')() // 压缩css
@@ -66,8 +44,7 @@ const prod = {
                                 // require('postcss-import')(),
                             ],
                         }
-                    },
-
+                    }
                 ],
                 exclude: /node_modules/,
             },
@@ -83,7 +60,7 @@ const prod = {
                             modules: {
                                 //  使用`local`值与使用`modules：true`具有相同的效果
                                 mode: 'local',
-                                localIdentName: '[hash:base64]', // 为了生成类名不是纯随机
+                                localIdentName: '[hash:base64:5]', // 为了生成类名不是纯随机，类名字符长度为5
                             },
                         }
                     },
@@ -102,31 +79,6 @@ const prod = {
                     'sass-loader',
                 ],
                 exclude: /node_modules/,
-            },
-            {
-                // npm install -D babel-loader @babel/core @babel/preset-env
-                // babel/plugin-transform-runtime 和 babel/preset-env 是babel-loader将ES6语法
-                // 转译成ES5语法使用的两个插件，两个只需要使用一个就行，
-                // 只不过， babel/plugin-transform-runtime 适用于开发组件或者库的时候使用，防止全局污染，
-                // babel/preset-env 是我们在开发一般项目时使用的；
-                test: /\.m?js$/i,
-                exclude: /node_modules/,
-                use: [
-                    "thread-loader", // 开启一个webworker进行代码转义
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            "presets": [
-                                ['@babel/preset-env']
-                            ],
-                            plugins: [
-                                '@babel/plugin-transform-runtime', // 使Babel运行时作为单独的模块，以避免重复。
-                            ],
-                            cacheDirectory: true // 用于缓存加载程序的结果
-                        }
-                    },
-                ]
-
             }
         ]
     },
@@ -135,30 +87,37 @@ const prod = {
             filename: '[contenthash].css',
             chunkFilename: '[contenthash].css',
         }),
-
     ],
     optimization: {
         minimize: true,
         minimizer: [
+            // 最小化js代码插件，以前用 UglifyJsPlugin插件
+            // 默认删除代码里的所有注释
+            // 默认没有排除，全部最小化
             new TerserPlugin({ // 最小化js代码插件
-                exclude: /\/excludes/,
                 terserOptions: {
                     output: {
-                        comments: false, // 执行删除代码里的所有注释
+                        comments: false, // false时，执行删除代码里的所有注释，要与 extractComments 一起用
                     },
                 },
                 extractComments: false, // 是否将注释提取到单独的文件中，为ture会单独生成注释文件
             }),
-            new OptimizeCSSAssetsPlugin({ // 最小化输出 MiniCssExtractPlugin 提取出的css文件插件， 内置 cssnano
-                cssProcessorPluginOptions: {
-                    preset: ['default', {
-                        discardComments: {
-                            removeAll: true
-                        }
-                    }],
-                },
-            })
+            new OptimizeCSSAssetsPlugin() // 用于css最小化
         ],
+        splitChunks: { // 代码分割
+            // 规定可以匹配的引入（import）文件的方式（同步initial、异步async）
+            chunks: 'all',
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10,
+                    name: '[name]',
+                }
+            }
+        },
+        runtimeChunk: { // 兼容老版本webpack，使打包时contenthash起作用
+            name: 'runtime'
+        }
     },
 }
 
