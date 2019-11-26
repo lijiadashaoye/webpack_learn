@@ -111,7 +111,7 @@ const prod = {
                 vendors: {
                     test: /[\\/]node_modules[\\/]/,
                     priority: -10,
-                    name: '[contenthash]',
+                    name: '[name]',
                 }
             }
         },

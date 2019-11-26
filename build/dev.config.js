@@ -47,11 +47,9 @@ const env = {
                                 require('postcss-import')(),
                                 // css浏览器兼容，postcss-cssnext已经内置了autoprefixer。
                                 require('postcss-cssnext')(),
-
                             ],
                         }
                     },
-
                 ],
                 exclude: /node_modules/,
             },
@@ -79,7 +77,6 @@ const env = {
                                 // 使用postcss-import插件，遵循@import规则，
                                 // 你可以将reset.css样式合并到你的主样式表中，减少http请求。
                                 require('postcss-import')(),
-
                             ],
                         }
                     },

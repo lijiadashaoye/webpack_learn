@@ -11,7 +11,7 @@ const files = fs.readdirSync(path.resolve(process.cwd(), './dll')),
     pluginsArr = [];
 files.forEach(file => {
     if (/.*\.dll.js/.test(file)) {
-        // 一个对象或者一个对象数组都可以
+        // AddAssetHtmlPlugin的参数可以是一个对象或者一个对象数组都可以
         pluginsArr.push(new AddAssetHtmlPlugin({
             filepath: path.resolve(process.cwd(), './dll', file)
         }))
