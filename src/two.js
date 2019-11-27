@@ -2,7 +2,7 @@ import twoCss from './two.scss';
 
 const two = {
     fn: () => {
-        let num = 3;
+        let num = 4;
         for (let i = 0; i < num; i++) {
             let h2 = document.createElement('button');
             h2.style.marginRight = "10px";
@@ -31,6 +31,9 @@ const two = {
         console.log(kk)
         let isp = $('#isP')[0];
         console.log(isp)
+
+    },
+    fn3: () => {
 
     }
 }
