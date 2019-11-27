@@ -31,7 +31,12 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Webpack Learn' + process.env.NODE_ENV,
-            favicon: path.resolve(process.cwd(), 'assets/images/ico.ico')
+            favicon: path.resolve(process.cwd(), 'assets/images/ico.ico'),
+            minify: { // 压缩HTML文件
+                removeComments: true, // 移除HTML中的注释
+                collapseWhitespace: true, // 删除空白符与换行符
+            },
+            inject: 'body' // 将script标签放到body签底部
         }),
         new CleanWebpackPlugin(),
         new webpack.ProvidePlugin({ // 定义项目中使用的库的别名

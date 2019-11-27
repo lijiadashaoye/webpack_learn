@@ -20,7 +20,7 @@ if (useCnd) { // 使用cnd方式加载库
     comm = require('./comm.config');
     outputs = {
         filename: '[contenthash].js', // 定义从entry中使用的入口文件的名字
-        chunkFilename: '[contenthash].js', // 定义动态引入的文件的名字
+        chunkFilename: '[contenthash].js', // 定义动态引入(代码中间接引入)的文件的名字
         path: path.resolve(__dirname, '../dist'),
     };
 }
@@ -103,6 +103,7 @@ const prod = {
             filename: '[contenthash].css',
             chunkFilename: '[contenthash].css',
         }),
+
     ],
     optimization: {
         minimize: true,
