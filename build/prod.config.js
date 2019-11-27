@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-let useCnd = true, // 切换打包后库的引用方式
+let useCnd = false, // 切换打包后库的引用方式
     outputs = null,
     comm = null;
 

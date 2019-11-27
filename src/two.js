@@ -31,9 +31,12 @@ const two = {
         console.log(kk)
         let isp = $('#isP')[0];
         console.log(isp)
-
     },
     fn3: () => {
+
+
+
+
 
     }
 }
