@@ -106,7 +106,6 @@ const prod = {
 
     ],
     optimization: {
-        minimize: true,
         minimizer: [
             // 最小化js代码插件，以前用 UglifyJsPlugin插件
             // 默认删除代码里的所有注释
@@ -121,17 +120,6 @@ const prod = {
             }),
             new OptimizeCSSAssetsPlugin() // 用于css最小化
         ],
-        splitChunks: { // 代码分割
-            // 规定可以匹配的引入（import）文件的方式（同步initial、异步async）
-            chunks: 'all',
-            cacheGroups: {
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    priority: -10,
-                    name: '[name]',
-                }
-            }
-        },
         runtimeChunk: { // 兼容老版本webpack，使打包时contenthash起作用
             name: 'runtime'
         }
