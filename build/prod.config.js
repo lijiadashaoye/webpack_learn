@@ -120,9 +120,9 @@ const prod = {
             }),
             new OptimizeCSSAssetsPlugin() // 用于css最小化
         ],
-        runtimeChunk: { // 兼容老版本webpack，使打包时contenthash起作用
-            name: 'runtime'
-        }
+        // runtimeChunk: { // 兼容老版本webpack，使打包时contenthash起作用
+        //     name: 'runtime'
+        // }
     },
 }
 module.exports = merge(comm, prod)

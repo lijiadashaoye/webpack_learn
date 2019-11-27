@@ -11,7 +11,7 @@
     "devd": "webpack --config build/dev.config.js",
     "prod": "webpack --config build/prod.config.js",
     "dll": "webpack --config build/dll.config.js",
-    "all": "npm run dll&&npm run prod"
+    "all": "npm run dll && npm run prod"
   },
   "keywords": [],
   "author": "",
