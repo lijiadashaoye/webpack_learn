@@ -12,12 +12,13 @@ const files = fs.readdirSync(path.resolve(process.cwd(), './dll')),
 
 files.forEach(file => {
     if (/.*\.js$/.test(file)) {
-        // AddAssetHtmlPlugin的参数可以是一个对象或者一个对象数组都可以
+        // AddAssetHtmlPlugin 的参数可以是一个对象或者一个对象数组都可以
         pluginsArr.push(new AddAssetHtmlPlugin({
             filepath: path.resolve(process.cwd(), './dll', file)
         }))
     }
     if (/.*\.manifest.json$/.test(file)) {
+        // 分析json文件，找到库的映射关系，如果符合映射，就不把库再打包出来
         pluginsArr.push(new webpack.DllReferencePlugin({
             manifest: path.resolve(process.cwd(), './dll', file)
         }))
@@ -26,12 +27,12 @@ files.forEach(file => {
 
 module.exports = {
     entry: { //入口
-        main: "./build/index"
+        main:path.resolve(__dirname,'index.js')
     },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Webpack Learn' + process.env.NODE_ENV,
-            favicon: path.resolve(process.cwd(), 'assets/images/ico.ico'),
+            favicon: path.join(process.cwd(), './assets/images/ico.ico'),
             minify: { // 压缩HTML文件
                 removeComments: true, // 移除HTML中的注释
                 collapseWhitespace: true, // 删除空白符与换行符
@@ -50,7 +51,7 @@ module.exports = {
 
     resolve: {
         alias: { // 定义文件读取路径快捷名称，两种写法都可以
-            assets: path.resolve(process.cwd(), 'assets'),
+            assets: path.resolve(process.cwd(), './assets'),
             src: './../src',
         },
         // 引用文件时，不用写对应的后缀名

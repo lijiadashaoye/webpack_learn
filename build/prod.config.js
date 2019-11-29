@@ -5,30 +5,23 @@ const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 let useCnd = false, // 切换打包后库的引用方式
-    outputs = null,
     comm = null;
 
 if (useCnd) { // 使用cnd方式加载库
     comm = require('./cnd.comm.config');
-    outputs = {
-        filename: '[contenthash].js', // 定义从entry中使用的入口文件的名字
-        chunkFilename: '[contenthash].js', // 定义动态引入的文件的名字
-        path: path.resolve(__dirname, '../dist'),
-        publicPath: path.resolve(__dirname, '../dist/')
-    };
 } else { // 本地打包库
     comm = require('./comm.config');
-    outputs = {
-        filename: '[contenthash].js', // 定义从entry中使用的入口文件的名字
-        chunkFilename: '[contenthash].js', // 定义动态引入(代码中间接引入)的文件的名字
-        path: path.resolve(__dirname, '../dist'),
-    };
 }
 
 // 生产环境打包
 const prod = {
     mode: 'production',
-    output: outputs,
+    output: {
+        filename: '[contenthash].js', // 定义从entry中使用的入口文件的名字
+        chunkFilename: '[contenthash].js', // 定义动态引入(代码中间接引入)的文件的名字
+        path: path.resolve(__dirname, '../dist'),
+        publicPath: path.join(__dirname, '../dist/')
+    },
     module: {
         rules: [{
                 test: /\.css$/i,
@@ -103,7 +96,6 @@ const prod = {
             filename: '[contenthash].css',
             chunkFilename: '[contenthash].css',
         }),
-
     ],
     optimization: {
         minimizer: [
@@ -120,6 +112,10 @@ const prod = {
             }),
             new OptimizeCSSAssetsPlugin() // 用于css最小化
         ],
+        splitChunks: { // 代码分割
+            chunks: 'all', // 规定可以匹配的引入（import）文件的方式（同步initial、异步async）
+            name: false
+        },
         // runtimeChunk: { // 兼容老版本webpack，使打包时contenthash起作用
         //     name: 'runtime'
         // }

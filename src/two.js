@@ -33,8 +33,6 @@ const two = {
         console.log(isp)
     },
     fn3: () => {
-        
-
 
 
 
