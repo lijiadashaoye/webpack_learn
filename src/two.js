@@ -6,6 +6,7 @@ const two = {
         for (let i = 0; i < num; i++) {
             let h2 = document.createElement('button');
             h2.style.marginRight = "10px";
+            h2.style.marginTop = "20px";
             h2.innerHTML = `fn${i}`;
             h2.onclick = () => {
                 two[`fn${i}`]()
@@ -34,8 +35,7 @@ const two = {
     },
     fn3: () => {
 
-
-
+      
     }
 }
 export default two
