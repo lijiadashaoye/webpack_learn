@@ -27,11 +27,12 @@ files.forEach(file => {
 
 module.exports = {
     entry: { //入口
-        main:path.resolve(__dirname,'index.js')
+        main: path.resolve(__dirname, 'index.js')
     },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Webpack Learn' + process.env.NODE_ENV,
+            template: path.resolve(process.cwd(), './src/index.html'),
             favicon: path.join(process.cwd(), './assets/images/ico.ico'),
             minify: { // 压缩HTML文件
                 removeComments: true, // 移除HTML中的注释

@@ -38,7 +38,7 @@ const one = {
         one.appends(...arr, span, p, image, image2, h2)
     },
     appends: (...tar) => {
-        tar.forEach(k => document.body.appendChild(k));
+        tar.forEach(k => document.getElementById('rongqi').appendChild(k));
     }
 }
 export default one;
