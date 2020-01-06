@@ -38,6 +38,7 @@ const one = {
         one.appends(...arr, span, p, image, image2, h2)
     },
     appends: (...tar) => {
+        console.log(document.getElementById('rongqi'))
         tar.forEach(k => document.getElementById('rongqi').appendChild(k));
     }
 }
