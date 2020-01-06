@@ -37,7 +37,6 @@ const two = {
 
     fn3: () => {
 
-
     }
 }
 export default two
