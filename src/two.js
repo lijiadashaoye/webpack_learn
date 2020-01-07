@@ -37,12 +37,7 @@ const two = {
 
     fn3: () => {
 
-        function fn(...args) {
-            console.log(args);
-            console.log(args instanceof Object);
-            console.log(typeof 9)
-        }
-        fn(8);
+        
 
     }
 }
