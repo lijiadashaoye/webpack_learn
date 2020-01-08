@@ -35,7 +35,7 @@ const prod = {
                             modules: {
                                 //  使用`local`值与使用`modules：true`具有相同的效果
                                 mode: 'local',
-                                localIdentName: '[hash:base64]', // 为了生成类名不是纯随机
+                                localIdentName: '[hash:base64:5]', // 为了生成类名不是纯随机，类名长度是5
                             },
                         }
                     },

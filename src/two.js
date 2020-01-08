@@ -9,8 +9,8 @@ const two = {
             h2.style.marginTop = "20px";
             h2.style.padding = "3px 8px";
             h2.innerHTML = `fn${i}`;
-            h2.onclick = () => {
-                two[`fn${i}`]()
+            h2.onclick = (e) => {
+                two[`fn${i}`](e)
             }
             document.getElementById('rongqi').appendChild(h2)
         }
@@ -21,7 +21,7 @@ const two = {
         h2.innerHTML = 'two h 3'
         document.getElementById('rongqi').appendChild(h2)
     },
-    fn1: () => { // 实现预加载,指示浏览器在空闲时间预取three.js文件。
+    fn1: () => { // 实现预加载,指示浏览器在空闲时间预取three.js文件，像vue那样用link标签。
         import( /* webpackPrefetch: true */ './three').then(({
             default: res
         }) => {
@@ -35,9 +35,11 @@ const two = {
         console.log(isp)
     },
 
-    fn3: () => {
+    fn3: (e) => {
 
-        
+        let dom = document.getElementById('isP');
+        let z = getComputedStyle(dom);
+        console.log(z)
 
     }
 }

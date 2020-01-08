@@ -1,5 +1,6 @@
 import tupian from 'assets/images/5.jpg';
 import oneCss from 'src/one.scss';
+
 const one = {
     fn1: () => {
         let num = 4,
@@ -10,6 +11,7 @@ const one = {
             arr.push(div)
         }
 
+
         let span = document.createElement('span');
         span.style.fontSize = "50px";
         span.className = oneCss['iconfont'];
@@ -17,6 +19,7 @@ const one = {
 
         let p = document.createElement('p');
         p.id = "isP";
+        p.style = "border:1px solid;background:pink;padding:20px 0;"
         let span2 = document.createElement('span');
         span2.innerHTML = 'transform span'
         p.appendChild(span2)

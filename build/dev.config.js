@@ -34,7 +34,7 @@ const env = {
                             modules: {
                                 //  使用`local`值与使用`modules：true`具有相同的效果
                                 mode: 'local',
-                                localIdentName: '[name]', // 为了生成类名不是纯随机
+                                localIdentName: '[local]', // 导出的类名不被另外转换
                             },
                         }
                     },
@@ -64,7 +64,7 @@ const env = {
                             modules: {
                                 //  使用`local`值与使用`modules：true`具有相同的效果
                                 mode: 'local',
-                                localIdentName: '[hash:base64:5]', // 为了生成类名不是纯随机
+                                localIdentName: '[local]', // 导出的类名不被另外转换
                             },
                         }
                     },
