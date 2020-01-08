@@ -11,7 +11,6 @@ const one = {
             arr.push(div)
         }
 
-
         let span = document.createElement('span');
         span.style.fontSize = "50px";
         span.className = oneCss['iconfont'];
