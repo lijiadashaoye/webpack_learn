@@ -37,9 +37,49 @@ const two = {
 
     fn3: (e) => {
 
-        let dom = document.getElementById('isP');
-        let z = getComputedStyle(dom);
-        console.log(z)
+
+        class P {
+            constructor(c) {
+                this.age = c;
+                console.log(this) // this指向 K
+            }
+            P_fn() {
+                console.log('P 的动态方法P_fn')
+                console.log('P：'+super.constructor.name)
+            }
+            static fn1() {
+                console.log('P：'+super.constructor.name)
+                console.log('P 的静态方法fn1')
+            }
+
+        }
+        class K extends P {
+            constructor(j) {
+                super(j);
+                console.log(this) // this指向 K
+            }
+            K_fn() {
+                console.log('K 的动态方法K_fn')
+                console.log('K：'+super.constructor.name)
+            }
+            static fn2() {
+                console.log('K：'+typeof super.constructor)
+                console.log('K 的静态方法fn2')
+            }
+
+        }
+        let kk = new K('li');
+        kk.K_fn(); // 动态方法可以通过实例访问
+        K.fn2(); // 静态方法可以通过父类 K 访问
+
+        kk.P_fn(); // 动态方法可以通过实例访问
+        P.fn1(); // 静态方法可以通过父类 K 访问
+        K.fn1();
+        console.log(kk) // 由 new K(j) 生成的实例对象 
+        console.log(P) // 构造函数 function P(c){ this.age=c }
+        console.log(K) // 构造函数 function K(j){}
+        
+
 
     }
 }

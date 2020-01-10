@@ -18,7 +18,7 @@ const one = {
 
         let p = document.createElement('p');
         p.id = "isP";
-        p.style = "border:1px solid;background:pink;padding:20px 0;"
+        p.style = "background:pink;padding:20px 0;"
         let span2 = document.createElement('span');
         span2.innerHTML = 'transform span'
         p.appendChild(span2)
