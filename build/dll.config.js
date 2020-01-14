@@ -4,7 +4,7 @@ const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-
+// 用于提取公共库
 module.exports = {
     mode: 'production',
     entry: {

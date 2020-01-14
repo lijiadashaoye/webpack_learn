@@ -4,7 +4,7 @@ const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
 const webpack = require('webpack');
-const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin'); // 用于项动态生成的html文件内插入标签
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin'); // 用于向动态生成的html文件内插入标签
 const fs = require('fs');
 
 const files = fs.readdirSync(path.resolve(process.cwd(), './dll')),
