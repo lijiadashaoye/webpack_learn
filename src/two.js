@@ -34,14 +34,11 @@ const two = {
         let isp = $('#isP')[0];
         console.log(isp)
     },
-
     fn3: (e) => {
-       
+
+  
 
 
     }
-
-
-
 }
 export default two
