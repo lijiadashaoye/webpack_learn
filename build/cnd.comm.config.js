@@ -38,7 +38,8 @@ module.exports = {
     // process.cwd() 是当前执行node命令时候的文件夹地址 ——工作目录
 
     resolve: {
-        alias: { // 定义文件读取路径快捷名称，两种写法都可以
+        // 定义文件读取路径快捷名称，两种写法都可以
+        alias: {
             assets: path.resolve(process.cwd(), 'assets'),
             src: './../src',
         },
