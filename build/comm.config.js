@@ -67,7 +67,7 @@ module.exports = {
                         // 设置图片打包阀值，如果超过阀值才会单独打包，否则直接以base64形式写到代码里
                         limit: 1024 * 20, // 30kb
                         name: '[name].[ext]',
-                        outputPath: 'images',
+                        outputPath: 'assets/images',
                     },
                 }],
             },
@@ -76,7 +76,7 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     name: '[name].[ext]',
-                    outputPath: 'fonts',
+                    outputPath: 'assets/fonts',
                 }
             },
             {

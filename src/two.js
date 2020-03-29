@@ -35,35 +35,8 @@ const two = {
         console.log(isp)
     },
     fn3: (e) => {
+       
 
-        let cav = document.querySelector('canvas');
-
-        cav.style = 'border:1px solid;margin:10px;'
-        cav.width = 500;
-        cav.height = 400;
-        let con = cav.getContext('2d');
-        con.fillStyle = 'red';
-        con.fillRect(20, 20, 400, 300);
-        con.clearRect(22, 22, 50, 40);
-
-        con.beginPath();
-        con.moveTo(100, 25); // 定义画图起点
-        con.lineTo(150, 25); // 画第一条线
-        con.lineTo(80, 100); // 画第二条线
-        con.closePath(); // 自动闭合起点和终点
-        con.strokeStyle = 'black';
-        con.stroke()
-
-        con.beginPath();
-        con.arc(180, 75, 50, 0, Math.PI * 2, true); // 绘制
-        con.moveTo(210, 75);
-        con.arc(180, 75, 30, 0, Math.PI, false); // 口(顺时针)
-        con.moveTo(165, 65);
-        con.arc(160, 65, 5, 0, Math.PI * 2, true); // 左眼
-        con.moveTo(205, 65);
-        con.arc(200, 65, 5, 0, Math.PI * 2, true); // 右眼
-
-        con.stroke()
 
 
 

@@ -83,7 +83,7 @@ module.exports = {
                             }
                             return '[contenthash].[ext]';
                         },
-                        outputPath: 'images',
+                        outputPath: 'assets/images',
                     },
                 }, ],
             },
@@ -97,7 +97,7 @@ module.exports = {
                         }
                         return '[contenthash].[ext]';
                     },
-                    outputPath: 'fonts',
+                    outputPath: 'assets/fonts',
                 }
             },
             {
