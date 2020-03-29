@@ -37,7 +37,9 @@ const two = {
 
     fn3: (e) => {
 
-        
+        navigator.geolocation.getCurrentPosition(function(position) {
+            console.log(position);
+          });
 
 
     }
