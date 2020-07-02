@@ -35,8 +35,8 @@ const two = {
         console.log(isp)
     },
     fn3: (e) => {
-       
 
+     
 
 
 
