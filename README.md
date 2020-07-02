@@ -14,5 +14,8 @@ https://coding.imooc.com/class/316.html
  cnpm install webpack-cli --save-dev
  添加 -g 才会全局安装，才能在终端直接执行 webpack 进行打包；
  如果是局部安装，需要使用 npx webpack 来执行打包
-3：
+3：常用插件
+HtmlWebpackPlugin
+CleanWebpackPlugin
+HotModuleReplacementPlugin
 

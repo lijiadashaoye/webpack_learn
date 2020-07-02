@@ -26,8 +26,6 @@ files.forEach(file => {
     }
 })
 
-console.log(process)
-
 module.exports = {
     entry: { //入口
         main: path.resolve(__dirname, 'index.js')
