@@ -4,7 +4,8 @@ const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
 const webpack = require('webpack');
-const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin'); // 用于向动态生成的html文件内插入标签
+// 用于向动态生成的html文件内插入标签
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const fs = require('fs');
 
 const currBuildPackName = JSON.parse(process.env.npm_config_argv);
@@ -36,13 +37,13 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Webpack Learn' + process.env.NODE_ENV,
             template: path.resolve(process.cwd(), './src/index.html'),
             favicon: path.join(process.cwd(), './assets/images/ico.ico'),
             minify: { // 压缩HTML文件
                 removeComments: true, // 移除HTML中的注释
                 collapseWhitespace: true, // 删除空白符与换行符
             },
+            title: 'Webpack Learn' + process.env.NODE_ENV,
             inject: 'body' // 将script标签放到body签底部
         }),
         new CleanWebpackPlugin(),

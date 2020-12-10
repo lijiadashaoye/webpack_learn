@@ -19,8 +19,8 @@ const prod = {
     output: {
         filename: '[contenthash].js', // 定义从entry中使用的入口文件的名字
         chunkFilename: '[contenthash].js', // 定义动态引入(代码中间接引入)的文件的名字
-        path: path.resolve(__dirname, '../dist'),
-        publicPath: path.join(__dirname, '../dist/')
+        path: path.resolve(__dirname, '../dist'), // path参数其实是针对本地文件系统的
+        publicPath: path.join(__dirname, '../dist/') // publicPath则针对的是浏览器，发布后用到
     },
     module: {
         rules: [{
@@ -91,6 +91,7 @@ const prod = {
             }
         ]
     },
+    // 添加额外功能
     plugins: [
         new MiniCssExtractPlugin({ // 将css提取出来
             filename: '[contenthash].css',
