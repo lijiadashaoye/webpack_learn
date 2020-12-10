@@ -1,0 +1,7 @@
+$primary: rgb(38, 187, 75);
+$bg:rgb(192, 240, 255);
+
+// 使用混入
+@mixin bg {
+    background: $bg;
+}

@@ -1,9 +1,10 @@
-@import './three.scss';
-
-.isH2 {
-    color: rgb(145, 255, 0);
-}
+@use './three' as t;
 
 .fort {
     background-color: palegreen;
+}
+
+.isH2 {
+    color: t.$primary;
+    @include t.bg;
 }

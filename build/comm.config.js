@@ -7,6 +7,11 @@ const webpack = require('webpack');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin'); // 用于向动态生成的html文件内插入标签
 const fs = require('fs');
 
+const currBuildPackName = JSON.parse(process.env.npm_config_argv);
+// 可以截取不同的参数来决定怎样打包
+console.log(currBuildPackName)
+
+// 读取公共的库
 const files = fs.readdirSync(path.resolve(process.cwd(), './dll')),
     pluginsArr = [];
 
